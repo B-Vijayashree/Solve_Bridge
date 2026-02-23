@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "388701237934",
+    "project_id": "solve-bridge",
+    "storage_bucket": "solve-bridge.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:388701237934:android:8ea9259ea008688102333f",
+        "android_client_info": {
+          "package_name": "com.example.solve_bridge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "388701237934-cl6oq8l2ovi5g2aqr3p8kce4jqn8qslo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCod7xJCUje8YpsgcthXNPJUjqJHix-oVM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "388701237934-cl6oq8l2ovi5g2aqr3p8kce4jqn8qslo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
