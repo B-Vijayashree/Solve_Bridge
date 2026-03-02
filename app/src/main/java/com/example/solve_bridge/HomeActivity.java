@@ -1,62 +1,98 @@
 package com.example.solve_bridge;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
-import androidx.appcompat.app.AppCompatActivity;
-import com.google.firebase.auth.FirebaseAuth;
-import android.widget.ImageView;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.SearchView;
 import android.widget.Toast;
 
-import java.util.Objects;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
 
-    Button btnLogout;
-    FirebaseAuth mAuth;
+    RecyclerView recyclerView;
+    ArrayList<Post> list;
+    PostAdapter adapter;
+
+    SearchView searchView;
+    ImageButton btnSearch, btnMenu, btnBack;
+
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Toast.makeText(this, "HomeActivity Started", Toast.LENGTH_LONG).show();
 
-        ImageView menuIcon = findViewById(R.id.menuIcon);
+        recyclerView = findViewById(R.id.recyclerView);
+        searchView = findViewById(R.id.searchView);
+        btnSearch = findViewById(R.id.btnSearch);
+        btnMenu = findViewById(R.id.btnMenu);
+        btnBack = findViewById(R.id.btnBack);
 
-        if (menuIcon != null) {
-            menuIcon.setOnClickListener(view -> {
-                PopupMenu popupMenu = new PopupMenu(HomeActivity.this, view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-                popupMenu.getMenu().add("Post a Problem");
-                popupMenu.getMenu().add("Profile");
-                popupMenu.getMenu().add("Your Solutions");
+        list = new ArrayList<>();
+        adapter = new PostAdapter(this, list);
+        recyclerView.setAdapter(adapter);
 
-                popupMenu.setOnMenuItemClickListener(item -> {
-                    if (Objects.equals(item.getTitle(), "Post a Problem")) {
-                        Toast.makeText(this, "Post Problem Clicked", Toast.LENGTH_SHORT).show();
-                    } else if (Objects.equals(item.getTitle(), "Profile")) {
-                        Toast.makeText(this, "Profile Clicked", Toast.LENGTH_SHORT).show();
-                    } else if (Objects.requireNonNull(item.getTitle()).equals("Your Solutions")) {
-                        Toast.makeText(this, "Your Solutions Clicked", Toast.LENGTH_SHORT).show();
+        db = FirebaseFirestore.getInstance();
+        loadPosts();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) { return false; }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                ArrayList<Post> filtered = new ArrayList<>();
+                for (Post p : list) {
+                    if (p.getTitle().toLowerCase().contains(newText.toLowerCase())) {
+                        filtered.add(p);
                     }
-                    return true;
-                });
+                }
+                adapter.updateList(filtered);
+                return true;
+            }
+        });
 
-                popupMenu.show();
-            });
-        }
+        btnSearch.setOnClickListener(v ->
+                searchView.setVisibility(
+                        searchView.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE
+                ));
 
-        mAuth = FirebaseAuth.getInstance();
-        btnLogout = findViewById(R.id.btnLogout);
+        btnBack.setOnClickListener(v -> finish());
 
-        if (btnLogout != null) {
-            btnLogout.setOnClickListener(v -> {
-                mAuth.signOut();
-                Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                finish();
-            });
-        }
+        btnMenu.setOnClickListener(v -> {
+            PopupMenu popup = new PopupMenu(this, btnMenu);
+            popup.getMenu().add("My Profile");
+            popup.getMenu().add("My Problems");
+            popup.getMenu().add("Posted Solutions");
+            popup.getMenu().add("Logout");
+            popup.show();
+        });
+    }
+
+    private void loadPosts() {
+        db.collection("posts")
+                .get()
+                .addOnSuccessListener(snap -> {
+                    Toast.makeText(this,
+                            "Snapshot empty? " + snap.isEmpty(),
+                            Toast.LENGTH_LONG).show();
+                })
+                .addOnFailureListener(e ->
+                        Toast.makeText(this,
+                                "REAL ERROR: " + e.getMessage(),
+                                Toast.LENGTH_LONG).show());
     }
 }

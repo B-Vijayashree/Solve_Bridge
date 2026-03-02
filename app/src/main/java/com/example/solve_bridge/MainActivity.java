@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     .addOnCompleteListener(task -> {
 
                         if (task.isSuccessful()) {
+
                             Toast.makeText(MainActivity.this,
                                     "Login Successful",
                                     Toast.LENGTH_SHORT).show();
@@ -82,7 +83,10 @@ public class MainActivity extends AppCompatActivity {
                                     "Login Failed: " + Objects.requireNonNull(task.getException()).getMessage(),
                                     Toast.LENGTH_LONG).show();
                         }
+
+
                     });
+
         });
 
         tvRegister.setOnClickListener(v -> {

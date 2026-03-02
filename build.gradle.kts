@@ -3,3 +3,9 @@ plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.google.gms.google.services) apply false
 }
+
+tasks.register("verification") {
+    description = "Alias for the check task"
+    group = "verification"
+    dependsOn("check")
+}

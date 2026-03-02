@@ -1,0 +1,47 @@
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    android:radius="12dp"
+    android:elevation="6dp">
+
+    <LinearLayout
+        android:layout_width="384dp"
+        android:layout_height="118dp"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!-- User Name -->
+        <TextView
+            android:id="@+id/tvUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:textStyle="bold"
+            android:fontFamily="@font/inter_regular"
+            android:textSize="16sp"/>
+
+        <!-- Problem Title -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Problem Title"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/inter_regular"
+            android:layout_marginTop="6dp"/>
+
+        <!-- Problem Description -->
+        <TextView
+            android:id="@+id/tvDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Problem Description"
+            android:fontFamily="@font/inter_regular"
+            android:layout_marginTop="4dp"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -36,6 +36,7 @@ android {
     }
 }
 
+
 dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -46,7 +47,13 @@ dependencies {
     implementation(libs.credentials.play.services.auth)
     implementation(libs.googleid)
     implementation(libs.firebase.firestore)
+    implementation(libs.firebase.database)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+}
+
+tasks.register("testClasses") {
+    dependsOn(tasks.matching { it.name.endsWith("UnitTestSources") })
 }
