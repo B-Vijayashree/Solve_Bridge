@@ -51,8 +51,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.title.setText(post.getTitle());
         holder.desc.setText(post.getDesc());
     }
-    public void updateList(ArrayList<Post> newList){
-        list = newList;
+
+    public void updateList(ArrayList<Post> newList) {
+        list.clear();
+        list.addAll(newList);
         notifyDataSetChanged();
     }
 
