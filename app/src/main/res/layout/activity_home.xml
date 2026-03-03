@@ -1,77 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="#F2F2F2">
-
-<!-- TOP BAR -->
-<RelativeLayout
-    android:id="@+id/topBar"
-    android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:background="#E6FBFF"
-    android:padding="10dp">
-
-    <ImageButton
-        android:id="@+id/btnBack"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_back"
-        android:background="@android:color/transparent"
-        android:layout_alignParentStart="true"/>
-
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Solve Bridge"
-        android:textColor="#39B9FF"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"/>
-
-    <ImageButton
-        android:id="@+id/btnMenu"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_menu"
-        android:background="@android:color/transparent"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"/>
-
-    <ImageButton
-        android:id="@+id/btnSearch"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_search"
-        android:background="@android:color/transparent"
-        android:layout_toStartOf="@id/btnMenu"
-        android:layout_marginEnd="15dp"
-        android:layout_centerVertical="true"/>
-</RelativeLayout>
-
-
-<!-- SEARCH BAR -->
-<SearchView
-    android:id="@+id/searchView"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_below="@id/topBar"
-    android:layout_margin="10dp"
-    android:background="@android:color/white"
-    android:visibility="gone"
-    android:iconifiedByDefault="false"
-    android:queryHint="Search problems..." />
-
-
-<!-- RECYCLER VIEW -->
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/recyclerView"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_below="@id/topBar"
-    android:layout_margin="10dp"
-    android:padding="10dp" />
+    android:orientation="vertical"
+    android:background="#F2F2F2">
 
-</RelativeLayout>
+    <!-- TOP BAR -->
+    <RelativeLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#E6FBFF"
+        android:padding="10dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_back"
+            android:background="@android:color/transparent"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Solve Bridge"
+            android:textColor="#39B9FF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"/>
+
+        <ImageButton
+            android:id="@+id/btnMenu"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_menu"
+            android:background="@android:color/transparent"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+
+        <ImageButton
+            android:id="@+id/btnSearch"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_search"
+            android:background="@android:color/transparent"
+            android:layout_toStartOf="@id/btnMenu"
+            android:layout_marginEnd="15dp"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <!-- SEARCH BAR -->
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:background="@android:color/white"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search problems..."
+        android:layout_margin="10dp"/>
+
+    <!-- RECYCLER VIEW -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="10dp"
+        android:padding="10dp"/>
+
+</LinearLayout>
