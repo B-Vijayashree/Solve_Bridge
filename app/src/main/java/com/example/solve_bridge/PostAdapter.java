@@ -1,4 +1,5 @@
 package com.example.solve_bridge;
+import android.content.Intent;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import android.content.Intent;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
@@ -50,6 +52,18 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.user.setText(post.getUser());
         holder.title.setText(post.getTitle());
         holder.desc.setText(post.getDesc());
+
+        // 🔥 ITEM CLICK LISTENER
+        holder.itemView.setOnClickListener(v -> {
+
+            Intent intent = new Intent(context, ProblemDetailActivity.class);
+
+            intent.putExtra("user", post.getUser());
+            intent.putExtra("title", post.getTitle());
+            intent.putExtra("description", post.getDesc());
+
+            context.startActivity(intent);
+        });
     }
 
     public void updateList(ArrayList<Post> newList) {

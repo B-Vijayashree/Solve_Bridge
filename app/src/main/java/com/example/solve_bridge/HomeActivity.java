@@ -1,25 +1,31 @@
 package com.example.solve_bridge;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.PopupMenu;
 import android.widget.SearchView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     RecyclerView recyclerView;
-    ArrayList<Post> list;          // original data
-    ArrayList<Post> filteredList;  // search data
+    ArrayList<Post> list;
+    ArrayList<Post> filteredList;
     PostAdapter adapter;
 
     SearchView searchView;
@@ -27,11 +33,20 @@ public class HomeActivity extends AppCompatActivity {
 
     FirebaseFirestore db;
 
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        // Drawer Setup
+        drawerLayout = findViewById(R.id.drawerLayout);
+        navigationView = findViewById(R.id.navigationView);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        // Views
         recyclerView = findViewById(R.id.recyclerView);
         searchView = findViewById(R.id.searchView);
         btnSearch = findViewById(R.id.btnSearch);
@@ -63,7 +78,8 @@ public class HomeActivity extends AppCompatActivity {
                     filteredList.addAll(list);
                 } else {
                     for (Post p : list) {
-                        if (p.getTitle().toLowerCase().contains(newText.toLowerCase())) {
+                        if (p.getTitle().toLowerCase()
+                                .contains(newText.toLowerCase())) {
                             filteredList.add(p);
                         }
                     }
@@ -77,21 +93,16 @@ public class HomeActivity extends AppCompatActivity {
         // SEARCH ICON
         btnSearch.setOnClickListener(v ->
                 searchView.setVisibility(
-                        searchView.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE
+                        searchView.getVisibility() == View.VISIBLE
+                                ? View.GONE : View.VISIBLE
                 ));
 
         // BACK BUTTON
         btnBack.setOnClickListener(v -> finish());
 
-        // MENU BUTTON
-        btnMenu.setOnClickListener(v -> {
-            PopupMenu popup = new PopupMenu(this, btnMenu);
-            popup.getMenu().add("My Profile");
-            popup.getMenu().add("My Problems");
-            popup.getMenu().add("Posted Solutions");
-            popup.getMenu().add("Logout");
-            popup.show();
-        });
+        // MENU BUTTON → OPEN DRAWER
+        btnMenu.setOnClickListener(v ->
+                drawerLayout.openDrawer(GravityCompat.START));
     }
 
     private void loadPosts() {
@@ -110,5 +121,31 @@ public class HomeActivity extends AppCompatActivity {
                     filteredList.addAll(list);
                     adapter.notifyDataSetChanged();
                 });
+    }
+
+    // Navigation Drawer Click Handling
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.nav_post_problem) {
+            startActivity(new Intent(this, PostProblemActivity.class));
+        }
+        else if (id == R.id.nav_my_profile) {
+            // startActivity(new Intent(this, ProfileActivity.class));
+        }
+        else if (id == R.id.nav_my_problems) {
+            // startActivity(new Intent(this, MyProblemsActivity.class));
+        }
+        else if (id == R.id.nav_posted_solutions) {
+            // startActivity(new Intent(this, SolutionsActivity.class));
+        }
+        else if (id == R.id.nav_logout) {
+            finish();
+        }
+
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

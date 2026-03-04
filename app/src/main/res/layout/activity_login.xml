@@ -90,7 +90,7 @@
         android:text="@string/solvebridge"
         android:textColor="#039BE5"
         android:textSize="32sp"
-        android:textStyle="bold|italic"
+        android:textStyle=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F9FC">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#E6FBFF">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Post a Problem"
+            android:textSize="20sp"
+            android:textColor="#39B9FF"
+            android:fontFamily="@font/galada_regular"
+            android:layout_gravity="center"/>
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="8dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_back" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Problem Title -->
+            <EditText
+                android:id="@+id/etTitle"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:hint="Problem Title"
+                android:fontFamily="@font/inter_regular"
+                android:padding="12dp"
+                android:background="@android:drawable/edit_text"/>
+
+            <!-- Description -->
+            <EditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:hint="Description"
+                android:fontFamily="@font/inter_regular"
+                android:padding="12dp"
+                android:layout_marginTop="15dp"
+                android:gravity="top"
+                android:background="@android:drawable/edit_text"
+                android:inputType="textMultiLine"/>
+
+            <!-- Category -->
+            <EditText
+                android:id="@+id/etCategory"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:hint="Category"
+                android:fontFamily="@font/inter_regular"
+                android:padding="12dp"
+                android:layout_marginTop="15dp"
+                android:background="@android:drawable/edit_text"/>
+
+            <!-- Submit Button -->
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:text="Submit Problem"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="25dp"
+                android:backgroundTint="#21A8E0"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
