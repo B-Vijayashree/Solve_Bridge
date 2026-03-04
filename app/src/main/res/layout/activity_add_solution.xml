@@ -13,22 +13,25 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp">
 
-        <ImageView
-            android:id="@+id/btnBack"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@android:drawable/ic_media_previous"
-            android:layout_centerVertical="true"
-            android:tint="#000000"/>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add Solution"
+            android:fontFamily="@font/galada_regular"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="#1BA1E2"
             android:layout_centerInParent="true"/>
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_back" />
+
     </RelativeLayout>
 
 
@@ -72,9 +75,10 @@
         android:layout_marginEnd="40dp"
         android:layout_marginTop="20dp"
         android:text="Submit Solution"
+        android:fontFamily="@font/galada_regular"
         android:textAllCaps="false"
         android:textSize="18sp"
         android:textColor="#1BA1E2"
-        android:background="#D6EEF5"/>
+        android:backgroundTint="#E6FBFF"/>
 
 </LinearLayout>

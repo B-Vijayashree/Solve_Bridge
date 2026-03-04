@@ -139,7 +139,7 @@ public class HomeActivity extends AppCompatActivity
             // startActivity(new Intent(this, MyProblemsActivity.class));
         }
         else if (id == R.id.nav_posted_solutions) {
-            // startActivity(new Intent(this, SolutionsActivity.class));
+            startActivity(new Intent(this, MySolutionsActivity.class));
         }
         else if (id == R.id.nav_logout) {
             finish();
@@ -148,4 +148,5 @@ public class HomeActivity extends AppCompatActivity
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

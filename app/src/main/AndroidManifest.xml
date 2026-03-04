@@ -15,6 +15,10 @@
 
         <activity android:name=".ProblemDetailActivity"/>
 
+        <activity android:name=".AddSolutionActivity"/>
+
+        <activity android:name=".MySolutionsActivity"/>
+
         <activity
             android:name=".PostProblemActivity"
             android:exported="false" />
