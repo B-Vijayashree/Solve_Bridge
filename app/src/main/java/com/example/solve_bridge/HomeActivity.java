@@ -133,7 +133,7 @@ public class HomeActivity extends AppCompatActivity
             startActivity(new Intent(this, PostProblemActivity.class));
         }
         else if (id == R.id.nav_my_profile) {
-            // startActivity(new Intent(this, ProfileActivity.class));
+            startActivity(new Intent(this, ProfileActivity.class));
         }
         else if (id == R.id.nav_my_problems) {
             // startActivity(new Intent(this, MyProblemsActivity.class));

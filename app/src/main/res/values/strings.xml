@@ -36,4 +36,12 @@
     <string name="search">Search</string>
     <string name="solve_bridgehome">Solve Bridge</string>
     <string name="menu_icon_description">Menu Icon</string>
+    <string name="profile_pic">Profile_pic</string>
+    <string name="v_mona_chrishline">V.Mona Chrishline</string>
+    <string name="role_developer">Role: Developer</string>
+    <string name="my_problems">My problems</string>
+    <string name="iot_security_system">IoT security system</string>
+    <string name="my_solutions">My solutions</string>
+    <string name="ai_based_disease">AI Based Disease Detection</string>
+    <string name="renewable_energy_tracker">Renewable Energy Tracker</string>
 </resources>

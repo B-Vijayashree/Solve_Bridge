@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- TOP BAR -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#E6FBFF"
+            android:padding="10dp">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/profile_pic"
+                android:src="@drawable/ic_back"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/profile"
+                android:src="@drawable/ic_profile"
+                tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+        </RelativeLayout>
+
+        <!-- PROFILE SECTION -->
+
+        <!-- My Problems -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/screenshot_2026_03_05_001253"
+                android:contentDescription="@string/profile"
+                android:padding="10dp"
+                android:src="@drawable/ic_profile" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/v_mona_chrishline"
+                android:textColor="#0091EA"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/role_developer"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <TextView
+            android:text="@string/my_problems"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:padding="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_margin="16dp"
+            android:background="@drawable/card_bg"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="@string/iot_security_system"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <!-- My Solutions -->
+        <TextView
+            android:text="@string/my_solutions"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:padding="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_margin="16dp"
+            android:background="@drawable/card_bg"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="@string/ai_based_disease"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:text="@string/renewable_energy_tracker"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
