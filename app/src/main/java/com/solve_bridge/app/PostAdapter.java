@@ -1,7 +1,7 @@
-package com.example.solve_bridge;
-import android.content.Intent;
+package com.solve_bridge.app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import android.content.Intent;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
@@ -55,12 +54,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         // 🔥 ITEM CLICK LISTENER
         holder.itemView.setOnClickListener(v -> {
-
             Intent intent = new Intent(context, ProblemDetailActivity.class);
 
-            intent.putExtra("user", post.getUser());
+            intent.putExtra("problemId", post.getId());
             intent.putExtra("title", post.getTitle());
             intent.putExtra("description", post.getDesc());
+            intent.putExtra("category", post.getCategory());
 
             context.startActivity(intent);
         });

@@ -1,4 +1,4 @@
-package com.example.solve_bridge;
+package com.solve_bridge.app;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -19,24 +19,31 @@ public class AddSolutionActivity extends AppCompatActivity {
     private EditText etSolution;
     private Button btnSubmit;
     private ImageView btnBack;
+
     private FirebaseFirestore db;
+
+    String problemId;
+
+    // TEMP user info (later you can get this from Firebase Auth)
+    String userId = "user1";
+    String userName = "Anonymous User";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_solution);
 
-        // Initialize Views
         etSolution = findViewById(R.id.etSolution);
         btnSubmit = findViewById(R.id.btnSubmit);
         btnBack = findViewById(R.id.btnBack);
 
         db = FirebaseFirestore.getInstance();
 
-        // Back Button
+        // Receive problemId from ProblemDetailActivity
+        problemId = getIntent().getStringExtra("problemId");
+
         btnBack.setOnClickListener(v -> finish());
 
-        // Submit Button
         btnSubmit.setOnClickListener(v -> submitSolution());
     }
 
@@ -49,23 +56,31 @@ public class AddSolutionActivity extends AppCompatActivity {
             return;
         }
 
-        btnSubmit.setEnabled(false); // Prevent double click
+        btnSubmit.setEnabled(false);
 
         Map<String, Object> solution = new HashMap<>();
+
+        solution.put("problemId", problemId);
         solution.put("solutionText", solutionText);
+        solution.put("userId", userId);
+        solution.put("userName", userName);
         solution.put("timestamp", System.currentTimeMillis());
 
-        db.collection("Solutions")
+        db.collection("solutions")
                 .add(solution)
                 .addOnSuccessListener(documentReference -> {
-                    Toast.makeText(this,
+
+                    Toast.makeText(AddSolutionActivity.this,
                             "Solution Submitted Successfully!",
                             Toast.LENGTH_SHORT).show();
+
                     finish();
                 })
                 .addOnFailureListener(e -> {
+
                     btnSubmit.setEnabled(true);
-                    Toast.makeText(this,
+
+                    Toast.makeText(AddSolutionActivity.this,
                             "Failed to submit solution",
                             Toast.LENGTH_SHORT).show();
                 });

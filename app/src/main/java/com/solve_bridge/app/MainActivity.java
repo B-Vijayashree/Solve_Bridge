@@ -1,8 +1,7 @@
-package com.example.solve_bridge;
+package com.solve_bridge.app;
 
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;

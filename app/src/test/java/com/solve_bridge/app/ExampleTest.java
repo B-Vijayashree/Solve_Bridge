@@ -1,4 +1,4 @@
-package com.example.solve_bridge;
+package com.solve_bridge.app;
 
 import org.junit.Test;
 
@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class ExampleUnitTest {
+public class ExampleTest {
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);

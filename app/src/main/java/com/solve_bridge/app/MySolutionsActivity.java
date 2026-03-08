@@ -1,4 +1,4 @@
-package com.example.solve_bridge;
+package com.solve_bridge.app;
 
 import android.os.Bundle;
 import android.widget.ImageView;

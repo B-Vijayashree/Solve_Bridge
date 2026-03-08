@@ -4,17 +4,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.solve_bridge"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    namespace = "com.solve_bridge.app"
+    compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.solve_bridge"
+        applicationId = "com.solve_bridge.app"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 

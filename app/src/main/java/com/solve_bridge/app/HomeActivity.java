@@ -1,4 +1,4 @@
-package com.example.solve_bridge;
+package com.solve_bridge.app;
 
 import android.content.Intent;
 import android.os.Bundle;

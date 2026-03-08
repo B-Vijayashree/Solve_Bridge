@@ -1,4 +1,4 @@
-package com.example.solve_bridge;
+package com.solve_bridge.app;
 
 import android.view.LayoutInflater;
 import android.view.View;
