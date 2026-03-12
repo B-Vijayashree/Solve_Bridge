@@ -14,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -52,6 +53,17 @@ public class HomeActivity extends AppCompatActivity
         btnSearch = findViewById(R.id.btnSearch);
         btnMenu = findViewById(R.id.btnMenu);
         btnBack = findViewById(R.id.btnBack);
+
+        FloatingActionButton fabPost;
+
+        fabPost = findViewById(R.id.fabPost);
+
+        fabPost.setOnClickListener(v -> {
+
+            Intent intent = new Intent(HomeActivity.this, PostProblemActivity.class);
+            startActivity(intent);
+
+        });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
