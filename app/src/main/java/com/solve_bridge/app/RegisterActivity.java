@@ -1,10 +1,11 @@
-package com.solve_bridge.app; // change if needed
+package com.solve_bridge.app;
 
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,15 +13,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import android.widget.ImageView;
 public class RegisterActivity extends AppCompatActivity {
 
     EditText etName, etEmail, etPassword;
-    RadioButton rbPoster, rbDeveloper;
+    CheckBox cbPoster, cbDeveloper, cbResearcher;
     Button btnRegister;
 
     FirebaseAuth mAuth;
@@ -42,8 +44,9 @@ public class RegisterActivity extends AppCompatActivity {
         etName = findViewById(R.id.etName);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
-        rbPoster = findViewById(R.id.rbPoster);
-        rbDeveloper = findViewById(R.id.rbDeveloper);
+        cbPoster = findViewById(R.id.cbPoster);
+        cbDeveloper = findViewById(R.id.cbDeveloper);
+        cbResearcher = findViewById(R.id.cbResearcher);
         btnRegister = findViewById(R.id.btnRegister);
 
         btnRegister.setOnClickListener(view -> {
@@ -52,14 +55,10 @@ public class RegisterActivity extends AppCompatActivity {
             String email = etEmail.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
 
-            final String role;
-            if (rbPoster.isChecked()) {
-                role = "Problem Poster";
-            } else if (rbDeveloper.isChecked()) {
-                role = "Developer";
-            } else {
-                role = "";
-            }
+            List<String> roles = new ArrayList<>();
+            if (cbPoster.isChecked()) roles.add("Problem Poster");
+            if (cbDeveloper.isChecked()) roles.add("Developer");
+            if (cbResearcher.isChecked()) roles.add("Researcher");
 
             if (TextUtils.isEmpty(name)) {
                 etName.setError("Name required");
@@ -76,24 +75,24 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
-            if (role.isEmpty()) {
-                Toast.makeText(this, "Select a role", Toast.LENGTH_SHORT).show();
+            if (roles.isEmpty()) {
+                Toast.makeText(this, "Select at least one role", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // 🔥 Create user in Firebase Authentication
+            // Create user in Firebase Authentication
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
 
                         if (task.isSuccessful()) {
 
-                            String userId = mAuth.getCurrentUser().getUid();
+                            String userId = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
 
-                            // 🔥 Store extra data in Firestore
+                            // Store extra data in Firestore
                             Map<String, Object> user = new HashMap<>();
                             user.put("name", name);
                             user.put("email", email);
-                            user.put("role", role);
+                            user.put("roles", roles);
 
                             db.collection("Users").document(userId)
                                     .set(user)

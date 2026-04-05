@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -33,6 +34,7 @@ public class HomeActivity extends AppCompatActivity
     ImageButton btnSearch, btnMenu, btnBack;
 
     FirebaseFirestore db;
+    FirebaseAuth mAuth;
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -41,6 +43,8 @@ public class HomeActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        mAuth = FirebaseAuth.getInstance();
 
         // Drawer Setup
         drawerLayout = findViewById(R.id.drawerLayout);
@@ -154,11 +158,25 @@ public class HomeActivity extends AppCompatActivity
             startActivity(new Intent(this, MySolutionsActivity.class));
         }
         else if (id == R.id.nav_logout) {
-            finish();
+            logoutUser();
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void logoutUser() {
+        // Sign out from Firebase
+        mAuth.signOut();
+
+        // Go to Login page
+        Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+
+        // Clear activity stack
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        startActivity(intent);
+        finish();
     }
 
 }

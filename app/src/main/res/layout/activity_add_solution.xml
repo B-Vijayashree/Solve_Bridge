@@ -9,9 +9,18 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#D6EEF5"
+        android:background="#E6FBFF"
         android:paddingStart="16dp"
         android:paddingEnd="16dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_back" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -20,17 +29,8 @@
             android:fontFamily="@font/galada_regular"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="#1BA1E2"
+            android:textColor="#39B9FF"
             android:layout_centerInParent="true"/>
-
-        <ImageButton
-            android:id="@+id/btnBack"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="start|center_vertical"
-            android:layout_marginStart="10dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_back" />
 
     </RelativeLayout>
 
@@ -78,7 +78,7 @@
         android:fontFamily="@font/galada_regular"
         android:textAllCaps="false"
         android:textSize="18sp"
-        android:textColor="#1BA1E2"
-        android:backgroundTint="#E6FBFF"/>
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#39B9FF"/>
 
 </LinearLayout>

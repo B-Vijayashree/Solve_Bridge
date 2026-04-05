@@ -21,6 +21,7 @@
     <string name="registerpage">Register</string>
     <string name="developerbutton">Developer</string>
     <string name="problem_posterbutton">Problem Poster</string>
+    <string name="researcherbutton">Researcher</string>
     <string name="select_role">Select Role</string>
     <string name="passwordreg">Password</string>
     <string name="emailreg">Email</string>

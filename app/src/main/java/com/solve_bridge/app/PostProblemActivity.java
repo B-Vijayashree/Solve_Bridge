@@ -10,6 +10,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -21,6 +23,7 @@ public class PostProblemActivity extends AppCompatActivity {
     Button btnSubmit;
 
     FirebaseFirestore db;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,7 @@ public class PostProblemActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> finish());
 
         db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,21 +61,44 @@ public class PostProblemActivity extends AppCompatActivity {
                     return;
                 }
 
+                if (mAuth.getCurrentUser() == null) {
+                    Toast.makeText(PostProblemActivity.this, "Please login to post", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                String userId = mAuth.getCurrentUser().getUid();
+                String userName = mAuth.getCurrentUser().getDisplayName();
+                if (userName == null || userName.isEmpty()) userName = "User";
+
                 Map<String, Object> post = new HashMap<>();
-                post.put("user", "Anonymous"); // change if using auth
+                post.put("userId", userId);
+                post.put("user", userName);
                 post.put("title", title);
                 post.put("desc", desc);
                 post.put("category", category);
+                post.put("timestamp", System.currentTimeMillis());
+
+                btnSubmit.setEnabled(false);
 
                 db.collection("posts")
                         .add(post)
                         .addOnSuccessListener(documentReference -> {
-                            Toast.makeText(PostProblemActivity.this, "Problem Posted Successfully", Toast.LENGTH_SHORT).show();
-                            finish();
+                            // Update user's problem list in their profile
+                            db.collection("Users").document(userId)
+                                    .update("myProblems", FieldValue.arrayUnion(title))
+                                    .addOnSuccessListener(aVoid -> {
+                                        Toast.makeText(PostProblemActivity.this, "Problem Posted Successfully", Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Toast.makeText(PostProblemActivity.this, "Problem posted but profile update failed", Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    });
                         })
-                        .addOnFailureListener(e ->
-                                Toast.makeText(PostProblemActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show()
-                        );
+                        .addOnFailureListener(e -> {
+                            btnSubmit.setEnabled(true);
+                            Toast.makeText(PostProblemActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        });
             }
         });
     }
