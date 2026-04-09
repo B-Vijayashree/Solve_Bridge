@@ -45,4 +45,6 @@
     <string name="my_solutions">My solutions</string>
     <string name="ai_based_disease">AI Based Disease Detection</string>
     <string name="renewable_energy_tracker">Renewable Energy Tracker</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="default_web_client_id" translatable="false">1081531034567-8gqddjmvg5h2pneadv9ps0engl8lqb1v.apps.googleusercontent.com</string>
 </resources>

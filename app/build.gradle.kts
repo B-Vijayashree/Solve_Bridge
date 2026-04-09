@@ -8,7 +8,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.solve_bridge.app"
+        applicationId = "com.example.solve_bridge"
         minSdk = 24
         targetSdk = 35
         versionCode = 1

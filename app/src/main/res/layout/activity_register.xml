@@ -21,22 +21,20 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <!-- Back Button -->
-        <ImageView
+        <ImageButton
             android:id="@+id/btnBack"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:contentDescription="@string/todo2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back"
+            android:scaleType="centerInside"
             android:src="@drawable/ic_back"
-            android:clickable="true"
-            android:focusable="true"
-            app:tint="@android:color/white"
-            tools:ignore="ImageContrastCheck" />
+            app:tint="@android:color/white" />
 
         <!-- Spacer -->
         <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_width="16dp"
+            android:layout_height="wrap_content" />
 
         <!-- Title -->
         <TextView
@@ -47,22 +45,6 @@
             android:textSize="22sp"
             android:textStyle="bold"
             tools:ignore="TextContrastCheck" />
-
-        <!-- Spacer -->
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-
-        <!-- Profile Icon -->
-        <ImageView
-            android:id="@+id/profileIcon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:contentDescription="@string/profile"
-            android:src="@android:drawable/ic_menu_myplaces"
-            app:tint="@android:color/white"
-            tools:ignore="ImageContrastCheck" />
 
     </LinearLayout>
 
